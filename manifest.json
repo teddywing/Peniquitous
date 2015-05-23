@@ -5,8 +5,8 @@
 	"description": "Ubiquitous Ctrl-P & Ctrl-N",
 	"version": "0.0.1",
 
-	"content_scripts": {
+	"content_scripts": [{
 		"matches": ["<all_urls>"],
 		"scripts": ["peniquitous.js"]
-	}
+	}]
 }
