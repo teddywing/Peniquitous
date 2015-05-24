@@ -13,6 +13,10 @@ hand to the arrow keys or take advantage of the muscle memory instilled from
 GNU Readline, Emacs, and other console applications.
 
 
+## Demo
+![Peniquitous demo gif](Peniquitous-demo.gif)
+
+
 ## Installing
 Download the .crx file from the [releases][0] page. Drag and drop the file into
 the Chrome Extensions page.
