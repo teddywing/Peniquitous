@@ -9,10 +9,9 @@
 	// Additional types:
 	//   * email
 	//   * number
-	//   * search
 	//   * tel
 	//   * url
-	var all_inputs = document.querySelectorAll('input[type="text"]');
+	var all_inputs = document.querySelectorAll('input[type="text"], input[type="search"]');
 
 	for (var i = 0; i < all_inputs.length; i++) {
 		all_inputs[i].addEventListener('keyup', function(e) {
