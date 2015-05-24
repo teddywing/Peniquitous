@@ -1,4 +1,11 @@
 (function() {
+	key_codes = {
+		p: 80,
+		n: 78,
+		UP_ARROW: 38,
+		DOWN_ARROW: 40
+	};
+
 	// Additional types:
 	//   * email
 	//   * number
@@ -9,11 +16,11 @@
 
 	for (var i = 0; i < all_inputs.length; i++) {
 		all_inputs[i].addEventListener('keyup', function(e) {
-			if (e.ctrlKey && e.keyCode === 80) {
-				KeyEvent.simulate(0, 38, [], e.target);
+			if (e.ctrlKey && e.keyCode === key_codes.p) {
+				KeyEvent.simulate(0, key_codes.UP_ARROW, [], e.target);
 			}
-			else if (e.ctrlKey && e.keyCode === 78) {
-				KeyEvent.simulate(0, 40, [], e.target);
+			else if (e.ctrlKey && e.keyCode === key_codes.n) {
+				KeyEvent.simulate(0, key_codes.DOWN_ARROW, [], e.target);
 			}
 		});
 	}
