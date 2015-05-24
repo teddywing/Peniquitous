@@ -17,9 +17,4 @@
 			}
 		});
 	}
-	
-	window.setTimeout(function() {
-		KeyEvent.simulate(0, 40, [], document.getElementById('lst-ib'));
-		console.log('fired');
-	}, 6000);
 })();
