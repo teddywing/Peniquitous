@@ -23,6 +23,7 @@ the Chrome Extensions page.
 
 
 ## License
-Licensed under the MIT License. See the included LICENSE file.
+Copyright © 2015 Teddy Wing. Licensed under the GNU GPLv3+ (see the included
+COPYING file).
 
 [0]: https://github.com/teddywing/Peniquitous/releases
