@@ -18,7 +18,10 @@ BROWSERIFY := ./node_modules/.bin/browserify
 
 all: peniquitous.user.js
 
-peniquitous.user.js: main.js peniquitous.js
+peniquitous.user.js: peniquitous.js userscript-header.txt
 	$(BROWSERIFY) \
 		--outfile $@ \
 		$<
+
+	cat userscript-header.txt $@ > "$@.tmp"
+	mv "$@.tmp" $@
