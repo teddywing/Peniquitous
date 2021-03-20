@@ -1,4 +1,4 @@
-// Copyright (c) 2015  Teddy Wing
+// Copyright (c) 2015, 2021  Teddy Wing
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -14,16 +14,5 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-(function() {
-	[
-		'lib/mousetrap/tests/libs/key-event.js',
-		'peniquitous.js'
-	].forEach(function(file) {
-		var s = document.createElement('script');
-		s.src = chrome.extension.getURL(file);
-		s.onload = function() {
-			this.parentNode.removeChild(this);
-		};
-		document.documentElement.appendChild(s);
-	});
-})();
+require('./lib/mousetrap/tests/libs/key-event.js');
+require('./peniquitous');
