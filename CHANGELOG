@@ -1,0 +1,12 @@
+CHANGELOG
+=========
+
+v0.1.0 (2021-03-21):
+	Changes:
+
+	* Change from a Chrome extension to a Greasemonkey user script.
+
+v0.0.1 (2015-05-24):
+	First public release.
+
+ vim:tw=80:comments=:fo+=n:formatlistpat=^\\s*\\*\\s*
