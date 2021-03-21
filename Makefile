@@ -22,11 +22,18 @@ all: peniquitous.user.js
 build:
 	mkdir -p $@
 
+build/mousetrap-license.js: node_modules/mousetrap/LICENSE
+	sed \
+		-e 's,^\(.\),// \1,' \
+		-e 's,^$$,//,' \
+		$< \
+		> $@
+
 build/key-event.js: node_modules/mousetrap/tests/libs/key-event.js \
-node_modules/mousetrap/LICENSE \
+build/mousetrap-license.js \
 | build
 	sed -e '/^(function/d' -e '$$d' $< > $@
-	cat node_modules/mousetrap/LICENSE $@ > $@.tmp
+	cat build/mousetrap-license.js $@ > $@.tmp
 	mv $@.tmp $@
 
 build/peniquitous.js: peniquitous.js | build
