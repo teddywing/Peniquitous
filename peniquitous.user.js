@@ -5,8 +5,26 @@
 // @namespace com.teddywing
 // ==/UserScript==
 
-(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-(function() {
+// Copyright (c) 2015, 2021  Teddy Wing
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+// var key_event = require('./lib/mousetrap/tests/libs/key-event.js');
+// var peniquitous = require('./peniquitous');
+
+function key_event () {
     var KeyEvent = function(data, type) {
         this.keyCode = 'keyCode' in data ? data.keyCode : 0;
         this.charCode = 'charCode' in data ? data.charCode : 0;
@@ -134,60 +152,9 @@
     };
 
     window.KeyEvent = KeyEvent;
-}) ();
+}
 
-},{}],2:[function(require,module,exports){
-// Copyright (c) 2015  Teddy Wing
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program. If not, see <https://www.gnu.org/licenses/>.
-
-
-require('./lib/mousetrap/tests/libs/key-event.js');
-require('./peniquitous');
-
-// (function() {
-// 	[
-// 		'lib/mousetrap/tests/libs/key-event.js',
-// 		'peniquitous.js'
-// 	].forEach(function(file) {
-// 		var s = document.createElement('script');
-// 		s.src = chrome.extension.getURL(file);
-// 		s.onload = function() {
-// 			this.parentNode.removeChild(this);
-// 		};
-// 		document.documentElement.appendChild(s);
-// 	});
-// })();
-
-},{"./lib/mousetrap/tests/libs/key-event.js":1,"./peniquitous":3}],3:[function(require,module,exports){
-// Copyright (c) 2015  Teddy Wing
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program. If not, see <https://www.gnu.org/licenses/>.
-
-
-(function() {
+function peniquitous () {
 	key_codes = {
 		p: 80,
 		n: 78,
@@ -212,6 +179,22 @@ require('./peniquitous');
 			}
 		});
 	}
-})();
+}
 
-},{}]},{},[2]);
+(function() {
+	[
+		key_event,
+		peniquitous
+	].forEach(function(script) {
+		console.log('peniquitous', script);
+		var s = document.createElement('script');
+		s.appendChild(
+			document.createTextNode('(' + script + ')();')
+		);
+		// s.src = chrome.extension.getURL(file);
+		// s.onload = function() {
+		// 	this.parentNode.removeChild(this);
+		// };
+		document.documentElement.appendChild(s);
+	});
+})();
