@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Peniquitous
 // @description Ubiquitous Ctrl-P & Ctrl-N
-// @version 0.0.1
+// @version 0.1.0
 // @namespace com.teddywing
 // ==/UserScript==
 
