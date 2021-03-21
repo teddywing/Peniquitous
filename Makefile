@@ -16,17 +16,56 @@
 
 BROWSERIFY := ./node_modules/.bin/browserify
 
+IMPORTS := peniquitous.js lib/mousetrap/tests/libs/key-event.js
+IMPORTS_BASENAME := $(notdir $(IMPORTS))
+
 all: peniquitous.user.js
 
-peniquitous.user.js: peniquitous.js lib/mousetrap/tests/libs/key-event.js userscript-header.txt
-	sed -e '1d' -e '$$d' \
-		lib/mousetrap/tests/libs/key-event.js \
-		> key-event.js
+# peniquitous.user.js: peniquitous.js lib/mousetrap/tests/libs/key-event.js userscript-header.txt
+# 	sed -e '1d' -e '$$d' \
+# 		lib/mousetrap/tests/libs/key-event.js \
+# 		> key-event.js
+#
+# 	cat \
+# 		userscript-header.txt \
+# 		key-event.js \
+# 		peniquitous.js \
+# 		> $@
+#
+# 	rm key-event.js
 
-	cat \
-		userscript-header.txt \
-		key-event.js \
-		peniquitous.js \
+# build/?: $(IMPORTS)
+# 	sed -e '/^(function/d' -e '$$d' file
+#
+# build/main.js: build/*.js
+
+build:
+	mkdir -p $@
+
+build/key-event.js: lib/mousetrap/tests/libs/key-event.js | build
+	sed -e '/^(function/d' -e '$$d' $< > $@
+
+build/peniquitous.js: peniquitous.js | build
+	sed -e '/^(function/d' -e '$$d' $< > $@
+
+# TODO: Swap main file names
+main.js.in: $(addprefix build/,$(IMPORTS_BASENAME))
+	sed \
+		-e '/\$$KEY_EVENT/r build/key-event.js' \
+		-e '/\$$KEY_EVENT/d' \
+		-e '/\$$PENIQUITOUS/r build/peniquitous.js' \
+		-e '/\$$PENIQUITOUS/d' \
+		main.js \
 		> $@
 
-	rm key-event.js
+peniquitous.user.js: main.js peniquitous.js userscript-header.txt
+	$(BROWSERIFY) \
+		--outfile $@ \
+		$<
+
+	cat userscript-header.txt $@ > "$@.tmp"
+	mv "$@.tmp" $@
+
+.PHONY: clean
+clean:
+	rm -rf build
