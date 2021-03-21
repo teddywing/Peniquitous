@@ -204,10 +204,6 @@ function peniquitous () {
 		s.appendChild(
 			document.createTextNode('(' + script + ')();')
 		);
-		// s.src = chrome.extension.getURL(file);
-		// s.onload = function() {
-		// 	this.parentNode.removeChild(this);
-		// };
 		document.documentElement.appendChild(s);
 	});
 })();
