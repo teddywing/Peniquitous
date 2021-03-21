@@ -1,6 +1,0 @@
-{
-	"name": "Peniquitous",
-	"dependencies": {
-		"mousetrap": "~1.5.2"
-	}
-}
