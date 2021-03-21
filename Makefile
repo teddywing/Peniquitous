@@ -37,6 +37,9 @@ build/main.js: main.js.in $(addprefix build/,$(IMPORTS_BASENAME))
 		$< \
 		> $@
 
+peniquitous.user.js: build/main.js userscript-header.txt
+	cat userscript-header.txt build/main.js > $@
+
 .PHONY: clean
 clean:
 	rm -rf build
