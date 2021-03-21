@@ -48,14 +48,13 @@ build/key-event.js: lib/mousetrap/tests/libs/key-event.js | build
 build/peniquitous.js: peniquitous.js | build
 	sed -e '/^(function/d' -e '$$d' $< > $@
 
-# TODO: Swap main file names
-main.js.in: $(addprefix build/,$(IMPORTS_BASENAME))
+build/main.js: main.js.in $(addprefix build/,$(IMPORTS_BASENAME))
 	sed \
 		-e '/\$$KEY_EVENT/r build/key-event.js' \
 		-e '/\$$KEY_EVENT/d' \
 		-e '/\$$PENIQUITOUS/r build/peniquitous.js' \
 		-e '/\$$PENIQUITOUS/d' \
-		main.js \
+		$< \
 		> $@
 
 peniquitous.user.js: main.js peniquitous.js userscript-header.txt
