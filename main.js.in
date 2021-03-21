@@ -1,3 +1,10 @@
+// ==UserScript==
+// @name Peniquitous
+// @description Ubiquitous Ctrl-P & Ctrl-N
+// @version 0.1.0
+// @namespace com.teddywing
+// ==/UserScript==
+
 // Copyright (c) 2015, 2021  Teddy Wing
 //
 // This program is free software: you can redistribute it and/or modify
