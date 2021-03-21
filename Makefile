@@ -14,7 +14,7 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-IMPORTS := peniquitous.js lib/mousetrap/tests/libs/key-event.js
+IMPORTS := peniquitous.js node_modules/mousetrap/tests/libs/key-event.js
 IMPORTS_BASENAME := $(notdir $(IMPORTS))
 
 all: peniquitous.user.js
@@ -22,7 +22,7 @@ all: peniquitous.user.js
 build:
 	mkdir -p $@
 
-build/key-event.js: lib/mousetrap/tests/libs/key-event.js | build
+build/key-event.js: node_modules/mousetrap/tests/libs/key-event.js | build
 	sed -e '/^(function/d' -e '$$d' $< > $@
 
 build/peniquitous.js: peniquitous.js | build
