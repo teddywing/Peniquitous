@@ -421,7 +421,6 @@ function peniquitous () {
 		key_event,
 		peniquitous
 	].forEach(function(script) {
-		console.log('peniquitous', script);
 		var s = document.createElement('script');
 		s.appendChild(
 			document.createTextNode('(' + script + ')();')
