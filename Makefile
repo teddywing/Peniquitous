@@ -14,30 +14,10 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-BROWSERIFY := ./node_modules/.bin/browserify
-
 IMPORTS := peniquitous.js lib/mousetrap/tests/libs/key-event.js
 IMPORTS_BASENAME := $(notdir $(IMPORTS))
 
 all: peniquitous.user.js
-
-# peniquitous.user.js: peniquitous.js lib/mousetrap/tests/libs/key-event.js userscript-header.txt
-# 	sed -e '1d' -e '$$d' \
-# 		lib/mousetrap/tests/libs/key-event.js \
-# 		> key-event.js
-#
-# 	cat \
-# 		userscript-header.txt \
-# 		key-event.js \
-# 		peniquitous.js \
-# 		> $@
-#
-# 	rm key-event.js
-
-# build/?: $(IMPORTS)
-# 	sed -e '/^(function/d' -e '$$d' file
-#
-# build/main.js: build/*.js
 
 build:
 	mkdir -p $@
@@ -56,14 +36,6 @@ build/main.js: main.js.in $(addprefix build/,$(IMPORTS_BASENAME))
 		-e '/\$$PENIQUITOUS/d' \
 		$< \
 		> $@
-
-peniquitous.user.js: main.js peniquitous.js userscript-header.txt
-	$(BROWSERIFY) \
-		--outfile $@ \
-		$<
-
-	cat userscript-header.txt $@ > "$@.tmp"
-	mv "$@.tmp" $@
 
 .PHONY: clean
 clean:

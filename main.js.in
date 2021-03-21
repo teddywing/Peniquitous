@@ -14,9 +14,6 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-// var key_event = require('./lib/mousetrap/tests/libs/key-event.js');
-// var peniquitous = require('./peniquitous');
-
 function key_event () {
 	$KEY_EVENT
 }
