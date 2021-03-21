@@ -1,4 +1,4 @@
-// Copyright (c) 2015  Teddy Wing
+// Copyright (c) 2015, 2021  Teddy Wing
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
 
 
 (function() {
-	key_codes = {
+	var key_codes = {
 		p: 80,
 		n: 78,
 		UP_ARROW: 38,
