@@ -18,10 +18,15 @@ BROWSERIFY := ./node_modules/.bin/browserify
 
 all: peniquitous.user.js
 
-peniquitous.user.js: peniquitous.js userscript-header.txt
-	$(BROWSERIFY) \
-		--outfile $@ \
-		$<
+peniquitous.user.js: peniquitous.js lib/mousetrap/tests/libs/key-event.js userscript-header.txt
+	sed -e '1d' -e '$$d' \
+		lib/mousetrap/tests/libs/key-event.js \
+		> key-event.js
 
-	cat userscript-header.txt $@ > "$@.tmp"
-	mv "$@.tmp" $@
+	cat \
+		userscript-header.txt \
+		key-event.js \
+		peniquitous.js \
+		> $@
+
+	rm key-event.js
